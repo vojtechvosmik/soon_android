@@ -6,6 +6,7 @@
     <!-- CONTENT DESCRIPTIONS -->
     <string name="description_event_photo">event photo</string>
     <string name="description_add">add icon</string>
+    <string name="description_logo">soon logo</string>
 
     <!-- HINTS -->
     <string name="hint_title">Title</string>

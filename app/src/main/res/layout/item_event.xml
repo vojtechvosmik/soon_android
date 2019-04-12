@@ -20,11 +20,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/txt_title" tools:text="test event"
                 android:textAllCaps="true" android:textSize="24sp" android:textColor="@color/white_main"
-                android:textAlignment="center"/>
+                android:textAlignment="center" android:fontFamily="@font/poppins_light" android:textStyle="bold"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/txt_days_count" android:textAlignment="center"
-                tools:text="11 days" android:textAllCaps="true" android:textSize="16sp"
-                android:textColor="@color/white_main" android:layout_marginTop="@dimen/margin_tiny"/>
+                tools:text="11 days" android:textAllCaps="true" android:textSize="15sp"
+                android:textColor="@color/white_main"
+                android:fontFamily="@font/poppins_light"/>
     </LinearLayout>
 </RelativeLayout>

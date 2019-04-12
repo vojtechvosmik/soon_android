@@ -7,4 +7,7 @@
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_extra_large">25dp</dimen>
 
+    <!-- CARDS -->
+    <dimen name="card_elevation">3dp</dimen>
+
 </resources>
