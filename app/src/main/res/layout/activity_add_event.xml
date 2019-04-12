@@ -1,50 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="@color/white_main">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp">
 
-        <ImageView
+    <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true" app:srcCompat="@drawable/ic_tick" android:id="@+id/fab_done"
+            android:layout_alignParentEnd="true" android:layout_alignParentBottom="true"
+            app:fabSize="normal" android:tint="@color/white" app:backgroundTint="@color/green_main"
+            android:layout_marginTop="@dimen/margin_large" android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large" android:layout_marginBottom="@dimen/margin_large"
+            android:focusable="true"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:background="@color/white">
+
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:id="@+id/img_photo"
-                android:contentDescription="@string/description_event_photo"
-                app:srcCompat="@color/blue_main"/>
-        <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/ic_add_circle"
-                android:layout_centerInParent="true"
-                android:contentDescription="@string/description_add"
-                android:tint="@color/white_main"/>
-    </RelativeLayout>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:autofillHints="false"
-            android:id="@+id/edittxt_title"
-            tools:ignore="UnusedAttribute"
-            android:hint="@string/hint_title" android:layout_marginTop="@dimen/margin_large"
-            android:fontFamily="@font/poppins_light"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:autofillHints="false"
-            tools:ignore="UnusedAttribute"
-            android:id="@+id/edittxt_date"
-            android:hint="@string/hint_date" android:layout_marginTop="@dimen/margin_large"
-            android:fontFamily="@font/poppins_light"/>
-</LinearLayout>
+                android:layout_height="250dp">
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/img_photo"
+                    android:contentDescription="@string/description_event_photo"
+                    android:scaleType="centerCrop"
+                    android:foreground="@color/black_transparent"/>
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/ic_add_circle"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/description_add"
+                    android:tint="@color/white_main"/>
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" app:srcCompat="@drawable/ic_left_arrow"
+                    android:id="@+id/img_back" android:tint="@color/white" android:padding="15dp"
+                    android:clickable="true" android:focusable="true" android:layout_margin="@dimen/margin_tiny"/>
+        </RelativeLayout>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:autofillHints="false"
+                android:id="@+id/edittxt_title"
+                tools:ignore="UnusedAttribute"
+                android:hint="@string/hint_title"
+                android:layout_marginTop="@dimen/margin_large"
+                android:fontFamily="@font/poppins_light"
+                android:background="@android:color/transparent" android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large" android:layout_marginBottom="@dimen/margin_large"
+                android:textColor="@color/black_main"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:background="@color/gray"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:autofillHints="false"
+                tools:ignore="UnusedAttribute"
+                android:id="@+id/edittxt_date"
+                android:hint="@string/hint_date"
+                android:layout_marginTop="@dimen/margin_large"
+                android:fontFamily="@font/poppins_light"
+                android:background="@android:color/transparent" android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginLeft="@dimen/margin_large" android:focusable="true" android:clickable="true"
+                android:textColor="@color/black_main"/>
+    </LinearLayout>
+</RelativeLayout>
