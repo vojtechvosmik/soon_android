@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
+import android.util.Log
 import com.philliphsu.bottomsheetpickers.date.DatePickerDialog
 import cz.vojtechvosmik.soon.R
 import cz.vojtechvosmik.soon.models.Event
@@ -40,7 +41,8 @@ class AddEventActivity : AppCompatActivity() {
         val now = Calendar.getInstance()
         datePicker = DatePickerDialog.Builder(
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                val dateString = ("$dayOfMonth.$monthOfYear.$year")
+                val fixedMonthOfYear = monthOfYear + 1
+                val dateString = ("$dayOfMonth.$fixedMonthOfYear.$year")
                 val date = DateUtils.getDateFromString(dateString, "dd.MM.yyyy")
                 selectedDate = date
                 edittxt_date.setText(dateString)

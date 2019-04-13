@@ -14,5 +14,6 @@
 
     <!-- OTHER -->
     <string name="notification">Notification</string>
+    <string name="days">days</string>
 
 </resources>
