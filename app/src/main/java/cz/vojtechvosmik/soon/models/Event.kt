@@ -6,6 +6,8 @@ import java.util.*
 
 @Entity(tableName = "events")
 data class Event(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int? = null,
     val title: String,
     val date: Date
 )

@@ -73,10 +73,22 @@
                 tools:ignore="UnusedAttribute"
                 android:id="@+id/edittxt_date"
                 android:hint="@string/hint_date"
+                android:focusableInTouchMode="false"
                 android:layout_marginTop="@dimen/margin_large"
                 android:fontFamily="@font/poppins_light"
                 android:background="@android:color/transparent" android:layout_marginRight="@dimen/margin_large"
                 android:layout_marginLeft="@dimen/margin_large" android:focusable="true" android:clickable="true"
-                android:textColor="@color/black_main"/>
+                android:textColor="@color/black_main" android:layout_marginBottom="@dimen/margin_large"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" android:background="@color/gray" android:id="@+id/view"/>
+        <Switch
+                android:text="@string/notification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/switch_notification"
+                android:fontFamily="@font/poppins_light" android:textSize="18sp"
+                android:layout_marginTop="@dimen/margin_large" android:layout_marginBottom="@dimen/margin_large"
+                android:layout_marginLeft="@dimen/margin_large" android:layout_marginRight="@dimen/margin_large"
+                android:textColor="@color/gray_darker"/>
     </LinearLayout>
 </RelativeLayout>

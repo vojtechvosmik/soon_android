@@ -12,4 +12,7 @@
     <string name="hint_title">Title</string>
     <string name="hint_date">Date</string>
 
+    <!-- OTHER -->
+    <string name="notification">Notification</string>
+
 </resources>
