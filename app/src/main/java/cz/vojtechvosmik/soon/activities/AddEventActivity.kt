@@ -1,5 +1,6 @@
 package cz.vojtechvosmik.soon.activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -34,6 +35,9 @@ class AddEventActivity : AppCompatActivity() {
         }
         fab_done.setOnClickListener {
             addEvent()
+        }
+        img_photo.setOnClickListener {
+            startActivity(Intent(this, PhotosActivity::class.java))
         }
     }
 
