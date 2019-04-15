@@ -39,6 +39,6 @@ class EventViewHolder(private val context: Context, itemView: View) : RecyclerVi
     fun setupViews(event: Event) {
         txtTitle.text = event.title
         txtDaysCount.text = ((DateUtils.getDatesDifferenceInDays(event.date) + 1).toString() + " " + context.getString(R.string.days))
-
+        imgPhoto.setImageBitmap(event.photo)
     }
 }

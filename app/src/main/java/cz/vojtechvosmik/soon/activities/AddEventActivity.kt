@@ -1,23 +1,27 @@
 package cz.vojtechvosmik.soon.activities
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
-import android.util.Log
 import com.philliphsu.bottomsheetpickers.date.DatePickerDialog
 import cz.vojtechvosmik.soon.R
 import cz.vojtechvosmik.soon.models.Event
 import cz.vojtechvosmik.soon.room.AppDatabase
+import cz.vojtechvosmik.soon.singletons.PhotoSingleton
 import cz.vojtechvosmik.soon.utils.DateUtils
 import kotlinx.android.synthetic.main.activity_add_event.*
 import java.util.*
 
 class AddEventActivity : AppCompatActivity() {
 
-    lateinit var datePicker: DatePickerDialog
+    private lateinit var datePicker: DatePickerDialog
     private var selectedDate: Date? = null
+    private var selectedPhoto: Bitmap? = null
+    private val PHOTOS_REQUEST_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +41,7 @@ class AddEventActivity : AppCompatActivity() {
             addEvent()
         }
         img_photo.setOnClickListener {
-            startActivity(Intent(this, PhotosActivity::class.java))
+            startActivityForResult(Intent(this, PhotosActivity::class.java), PHOTOS_REQUEST_CODE)
         }
     }
 
@@ -63,11 +67,27 @@ class AddEventActivity : AppCompatActivity() {
     private fun addEvent() {
         val title = edittxt_title.text.toString()
         if (!TextUtils.isEmpty(title) && selectedDate != null) {
-            val event = Event(title = title, date = selectedDate!!)
+            val event = Event(
+                title = title,
+                date = selectedDate!!,
+                photo = selectedPhoto
+            )
             AppDatabase.getAppDatabase(this)?.eventsDao()?.insertEvent(event)
             finish()
         }else {
             //TODO insert from pls..
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PHOTOS_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val photo = PhotoSingleton.selectedPhoto
+            if (photo != null) {
+                img_photo.setImageBitmap(photo)
+                selectedPhoto = photo
+                PhotoSingleton.selectedPhoto = null
+            }
         }
     }
 }
