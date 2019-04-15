@@ -37,7 +37,8 @@ class EventsFragment : BaseFragment() {
     private fun fetchEvents() {
         recycler_events.adapter = null
         val events = AppDatabase.getAppDatabase(context!!)?.eventsDao()?.getEvents()
-        if (events != null)
-            recycler_events.adapter = EventsAdapter(context!!, events)
+        val sortedEvents = events?.sortedBy { it.date }
+        if (sortedEvents != null)
+            recycler_events.adapter = EventsAdapter(context!!, sortedEvents)
     }
 }

@@ -13,7 +13,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:id="@+id/img_photo"
-            android:contentDescription="@string/description_event_photo" android:layout_marginBottom="2dp"
+            android:contentDescription="@string/description_event_photo" android:layout_marginBottom="1dp"
             android:foreground="@color/black_transparent" android:scaleType="centerCrop"/>
     <LinearLayout
             android:orientation="vertical"
@@ -27,7 +27,7 @@
                 tools:text="test event"
                 android:textAllCaps="true"
                 android:textSize="24sp"
-                android:textColor="@color/white_main"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:fontFamily="@font/poppins_light"
                 android:textStyle="bold"/>
@@ -39,7 +39,7 @@
                 tools:text="11 days"
                 android:textAllCaps="true"
                 android:textSize="15sp"
-                android:textColor="@color/white_main"
+                android:textColor="@color/white"
                 android:fontFamily="@font/poppins_light" android:layout_marginTop="3dp"/>
     </LinearLayout>
 </RelativeLayout>
