@@ -1,6 +1,7 @@
 package cz.vojtechvosmik.soon.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import cz.vojtechvosmik.soon.R
+import cz.vojtechvosmik.soon.activities.EventsDetailsActivity
 import cz.vojtechvosmik.soon.models.Event
 import cz.vojtechvosmik.soon.utils.DateUtils
 import kotlinx.android.synthetic.main.item_event.view.*
@@ -25,7 +27,7 @@ class EventsAdapter(private val context: Context, private val events: List<Event
     }
 
     override fun onBindViewHolder(viewHolder: EventViewHolder, position: Int) {
-        viewHolder.setupViews(events[position])
+        viewHolder.setupViews(events[position], position)
     }
 }
 
@@ -36,9 +38,14 @@ class EventViewHolder(private val context: Context, itemView: View) : RecyclerVi
     private val txtDaysCount: TextView = itemView.txt_days_count
     private val imgPhoto: ImageView = itemView.img_photo
 
-    fun setupViews(event: Event) {
+    fun setupViews(event: Event, index: Int) {
         txtTitle.text = event.title
         txtDaysCount.text = ((DateUtils.getDatesDifferenceInDays(event.date) + 1).toString() + " " + context.getString(R.string.days))
         imgPhoto.setImageBitmap(event.photo)
+        container.setOnClickListener {
+            val intent = Intent(context, EventsDetailsActivity::class.java)
+            intent.putExtra("index", index)
+            context.startActivity(intent)
+        }
     }
 }

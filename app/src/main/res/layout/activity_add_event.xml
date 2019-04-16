@@ -33,7 +33,8 @@
                     android:id="@+id/img_photo"
                     android:contentDescription="@string/description_event_photo"
                     android:scaleType="centerCrop"
-                    android:foreground="@color/black_transparent" android:clickable="true" android:focusable="true"/>
+                    android:clickable="true" android:focusable="true"
+                    android:foreground="@color/black_lighter_transparent"/>
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"

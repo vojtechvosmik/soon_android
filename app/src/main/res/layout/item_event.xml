@@ -3,18 +3,28 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layout_container"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" >
+                android:layout_height="150dp"
+                tools:ignore="UnusedAttribute">
 
     <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@color/blue_main"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:id="@+id/img_photo"
-            android:contentDescription="@string/description_event_photo" android:layout_marginBottom="1dp"
-            android:foreground="@color/black_transparent" android:scaleType="centerCrop"/>
+            android:contentDescription="@string/description_event_photo"
+            android:layout_marginBottom="1dp"
+            android:scaleType="centerCrop" app:srcCompat="@color/blue_main"/>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:background="@color/black_lighter_transparent"
+            android:visibility="visible">
+
+    </RelativeLayout>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -26,7 +36,7 @@
                 android:layout_height="wrap_content"
                 tools:text="test event"
                 android:textAllCaps="true"
-                android:textSize="24sp"
+                android:textSize="26sp"
                 android:textColor="@color/white"
                 android:textAlignment="center"
                 android:fontFamily="@font/poppins_light"
@@ -38,8 +48,9 @@
                 android:textAlignment="center"
                 tools:text="11 days"
                 android:textAllCaps="true"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/poppins_light" android:layout_marginTop="3dp"/>
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginTop="3dp"/>
     </LinearLayout>
 </RelativeLayout>
