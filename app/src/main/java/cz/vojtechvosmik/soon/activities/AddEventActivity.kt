@@ -66,6 +66,7 @@ class AddEventActivity : AppCompatActivity() {
     }
 
     private fun addEvent() {
+        fab_done.setOnClickListener(null)
         val title = edittxt_title.text.toString()
         if (!TextUtils.isEmpty(title) && selectedDate != null) {
             val event = Event(

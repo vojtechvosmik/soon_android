@@ -6,8 +6,10 @@ import android.view.View
 import cz.vojtechvosmik.soon.R
 import cz.vojtechvosmik.soon.activities.EditEventActivity
 import cz.vojtechvosmik.soon.models.Event
+import cz.vojtechvosmik.soon.room.AppDatabase
 import cz.vojtechvosmik.soon.utils.DateUtils
 import kotlinx.android.synthetic.main.fragment_event_detail.*
+import java.lang.Exception
 
 class EventDetailFragment : BaseFragment() {
 
@@ -29,11 +31,29 @@ class EventDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fetchEvent()
+        setupViews()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        try {
+            event = AppDatabase.getAppDatabase(context!!)!!.eventsDao().getEventsWithId(event!!.id!!)[0]
+        }catch (e: Exception) {
+            activity?.finish()
+        }
+    }
+
+    private fun setupViews() {
+        img_photo.setOnClickListener {
+            if (fab_edit.visibility == View.VISIBLE) {
+                fab_edit.visibility = View.INVISIBLE
+            }else {
+                fab_edit.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun fetchEvent() {
-        if (event == null)
-            return
         txt_title.text = event!!.title
         txt_days_count.text = ((DateUtils.getDatesDifferenceInDays(event!!.date) + 1).toString() + " " + context!!.getString(R.string.days))
         img_photo.setImageBitmap(event!!.photo)

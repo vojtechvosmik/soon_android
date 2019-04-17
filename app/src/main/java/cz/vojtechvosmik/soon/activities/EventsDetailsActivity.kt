@@ -17,15 +17,12 @@ class EventsDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_events_details)
         setupViews()
-    }
-
-    override fun onResume() {
-        super.onResume()
         fetchEvents()
     }
 
     private fun setupViews() {
         progress.progressDrawable.setColorFilter(ContextCompat.getColor(this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+        pager_events.isSaveFromParentEnabled = false
         img_back.setOnClickListener {
             onBackPressed()
         }
