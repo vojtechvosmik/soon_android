@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
+import android.view.View
 import com.philliphsu.bottomsheetpickers.date.DatePickerDialog
 import cz.vojtechvosmik.soon.R
 import cz.vojtechvosmik.soon.models.Event
@@ -16,6 +17,7 @@ import cz.vojtechvosmik.soon.utils.DateUtils
 import kotlinx.android.synthetic.main.activity_add_event.*
 import java.lang.Exception
 import java.util.*
+import android.app.AlertDialog
 
 class EditEventActivity : AppCompatActivity() {
 
@@ -46,6 +48,22 @@ class EditEventActivity : AppCompatActivity() {
         img_photo.setOnClickListener {
             startActivityForResult(Intent(this, PhotosActivity::class.java), PHOTOS_REQUEST_CODE)
         }
+        btn_delete.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.delete))
+                .setMessage(getString(R.string.really_delete_event))
+                .setPositiveButton(getString(R.string.delete)) { dialog, _ ->
+                    AppDatabase.getAppDatabase(this)!!.eventsDao().deleteEvent(event!!)
+                    dialog.dismiss()
+                    finish()
+                }
+                .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+        switch_notification.visibility = View.GONE
+        btn_delete.visibility = View.VISIBLE
     }
 
     private fun setupDatePicker() {

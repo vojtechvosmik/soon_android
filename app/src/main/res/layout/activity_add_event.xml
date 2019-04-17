@@ -38,7 +38,8 @@
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" android:background="@color/black_lighter_transparent"
-                    android:visibility="visible">
+                    android:visibility="visible" android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true">
 
             </RelativeLayout>
             <ImageView
@@ -98,5 +99,14 @@
                 android:layout_marginTop="@dimen/margin_large" android:layout_marginBottom="@dimen/margin_large"
                 android:layout_marginLeft="@dimen/margin_large" android:layout_marginRight="@dimen/margin_large"
                 android:textColor="@color/gray_darker"/>
+        <Button
+                android:text="@string/delete_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/btn_delete"
+                android:textColor="@color/red"
+                android:background="@android:color/transparent" android:gravity="center|start"
+                android:layout_marginLeft="@dimen/margin_large" android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_tiny" android:layout_marginBottom="@dimen/margin_tiny"
+                android:visibility="gone"/>
     </LinearLayout>
 </RelativeLayout>
