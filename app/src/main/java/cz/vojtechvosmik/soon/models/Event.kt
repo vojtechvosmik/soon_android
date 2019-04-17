@@ -9,7 +9,7 @@ import java.util.*
 data class Event(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    val title: String,
-    val date: Date,
-    val photo: Bitmap? = null
+    var title: String,
+    var date: Date,
+    var photo: Bitmap? = null
 )

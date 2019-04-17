@@ -34,7 +34,13 @@
                     android:contentDescription="@string/description_event_photo"
                     android:scaleType="centerCrop"
                     android:clickable="true" android:focusable="true"
-                    android:foreground="@color/black_lighter_transparent"/>
+            />
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:background="@color/black_lighter_transparent"
+                    android:visibility="visible">
+
+            </RelativeLayout>
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -46,7 +52,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp" app:srcCompat="@drawable/ic_left_arrow"
                     android:id="@+id/img_back" android:tint="@color/white" android:padding="@dimen/margin_large"
-                    android:clickable="true" android:focusable="true"/>
+                    android:clickable="true" android:focusable="true"
+                    android:contentDescription="@string/description_back"/>
         </RelativeLayout>
         <EditText
                 android:layout_width="match_parent"

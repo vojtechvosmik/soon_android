@@ -20,7 +20,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun bitMapToString(bitmap: Bitmap): String {
+    fun bitmapToString(bitmap: Bitmap): String {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
         val b = baos.toByteArray()
@@ -28,7 +28,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun stringToBitMap(encodedString: String): Bitmap? {
+    fun stringToBitmap(encodedString: String): Bitmap? {
         return try {
             val encodeByte = Base64.decode(encodedString, Base64.DEFAULT)
             BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)

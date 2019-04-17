@@ -39,5 +39,14 @@
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_light"
             android:layout_marginTop="3dp"/>
+    <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true" app:srcCompat="@drawable/ic_edit" android:id="@+id/fab_edit"
+            android:layout_alignParentEnd="true" android:layout_alignParentBottom="true"
+            app:fabSize="normal" android:tint="@color/white" app:backgroundTint="@color/green_main"
+            android:layout_marginTop="@dimen/margin_large" android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large" android:layout_marginBottom="@dimen/margin_large"
+            android:focusable="true"/>
 
 </RelativeLayout>

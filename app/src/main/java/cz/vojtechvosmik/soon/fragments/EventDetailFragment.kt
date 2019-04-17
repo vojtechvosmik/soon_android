@@ -1,8 +1,10 @@
 package cz.vojtechvosmik.soon.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import cz.vojtechvosmik.soon.R
+import cz.vojtechvosmik.soon.activities.EditEventActivity
 import cz.vojtechvosmik.soon.models.Event
 import cz.vojtechvosmik.soon.utils.DateUtils
 import kotlinx.android.synthetic.main.fragment_event_detail.*
@@ -35,5 +37,10 @@ class EventDetailFragment : BaseFragment() {
         txt_title.text = event!!.title
         txt_days_count.text = ((DateUtils.getDatesDifferenceInDays(event!!.date) + 1).toString() + " " + context!!.getString(R.string.days))
         img_photo.setImageBitmap(event!!.photo)
+        fab_edit.setOnClickListener {
+            val intent = Intent(context, EditEventActivity::class.java)
+            intent.putExtra("id", event!!.id)
+            startActivity(intent)
+        }
     }
 }

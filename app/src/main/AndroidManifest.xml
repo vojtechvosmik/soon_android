@@ -12,6 +12,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activities.EventsDetailsActivity">
         </activity>
+        <activity android:name=".activities.EditEventActivity">
+        </activity>
         <activity android:name=".activities.PhotosActivity">
         </activity>
         <activity android:name=".activities.MainActivity">

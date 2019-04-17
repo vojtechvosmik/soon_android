@@ -17,9 +17,10 @@ import kotlinx.android.synthetic.main.activity_add_event.*
 import java.lang.Exception
 import java.util.*
 
-class AddEventActivity : AppCompatActivity() {
+class EditEventActivity : AppCompatActivity() {
 
     private lateinit var datePicker: DatePickerDialog
+    private var event: Event? = null
     private var selectedDate: Date? = null
     private var selectedPhoto: Bitmap? = null
     private val PHOTOS_REQUEST_CODE = 1
@@ -29,6 +30,7 @@ class AddEventActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_event)
         setupDatePicker()
         setupViews()
+        getEvent()
     }
 
     private fun setupViews() {
@@ -39,7 +41,7 @@ class AddEventActivity : AppCompatActivity() {
             datePicker.show(supportFragmentManager, "DatePickerDialog")
         }
         fab_done.setOnClickListener {
-            addEvent()
+            editEvent()
         }
         img_photo.setOnClickListener {
             startActivityForResult(Intent(this, PhotosActivity::class.java), PHOTOS_REQUEST_CODE)
@@ -65,15 +67,32 @@ class AddEventActivity : AppCompatActivity() {
         datePicker.setAccentColor(ContextCompat.getColor(this, R.color.green_main))
     }
 
-    private fun addEvent() {
+    private fun getEvent() {
+        try {
+            val id = intent.extras!!.getInt("id")
+            val event = AppDatabase.getAppDatabase(this)!!.eventsDao().getEventsWithId(id)[0]
+            this.event = event
+            fetchEvent()
+        }catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun fetchEvent() {
+        selectedDate = event!!.date
+        selectedPhoto = event!!.photo
+        edittxt_title.setText(event!!.title)
+        edittxt_date.setText(DateUtils.changeDateFormat(event!!.date, "dd.MM.yyyy"))
+        img_photo.setImageBitmap(event!!.photo)
+    }
+
+    private fun editEvent() {
         val title = edittxt_title.text.toString()
         if (!TextUtils.isEmpty(title) && selectedDate != null) {
-            val event = Event(
-                title = title,
-                date = selectedDate!!,
-                photo = selectedPhoto
-            )
-            AppDatabase.getAppDatabase(this)?.eventsDao()?.insertEvent(event)
+            event!!.title = title
+            event!!.date = selectedDate!!
+            event!!.photo = selectedPhoto
+            AppDatabase.getAppDatabase(this)?.eventsDao()?.updateEvent(event!!)
             finish()
         }else {
             //TODO insert from pls..
