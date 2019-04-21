@@ -12,7 +12,26 @@
              android:layout_height="60dp"
              layout="@layout/view_toolbar"
              android:id="@+id/toolbar"/>
-    <android.support.v7.widget.RecyclerView
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/recycler_photos"/>
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/recycler_photos">
+        </android.support.v7.widget.RecyclerView>
+        <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_photo_library"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/fab_photo_library"
+                android:tint="@color/white"
+                android:focusable="true" android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginStart="@dimen/margin_large" android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_large" app:backgroundTint="@color/green_main"
+                app:fabSize="normal"/>
+    </RelativeLayout>
 </LinearLayout>
