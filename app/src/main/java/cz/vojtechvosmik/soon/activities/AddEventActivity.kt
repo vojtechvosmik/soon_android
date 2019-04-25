@@ -7,12 +7,15 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
+import android.widget.Toast
 import com.philliphsu.bottomsheetpickers.date.DatePickerDialog
 import cz.vojtechvosmik.soon.R
 import cz.vojtechvosmik.soon.models.Event
 import cz.vojtechvosmik.soon.room.AppDatabase
 import cz.vojtechvosmik.soon.singletons.PhotoSingleton
+import cz.vojtechvosmik.soon.utils.AnimationUtils
 import cz.vojtechvosmik.soon.utils.DateUtils
+import cz.vojtechvosmik.soon.utils.StorageUtils
 import kotlinx.android.synthetic.main.activity_add_event.*
 import java.lang.Exception
 import java.util.*
@@ -44,6 +47,12 @@ class AddEventActivity : AppCompatActivity() {
         img_photo.setOnClickListener {
             startActivityForResult(Intent(this, PhotosActivity::class.java), PHOTOS_REQUEST_CODE)
         }
+        try {
+            val firstPhoto = StorageUtils.getPhotosFromAssets(this)[0]
+            img_photo.setImageDrawable(firstPhoto)
+        }catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private fun setupDatePicker() {
@@ -66,9 +75,9 @@ class AddEventActivity : AppCompatActivity() {
     }
 
     private fun addEvent() {
-        fab_done.setOnClickListener(null)
         val title = edittxt_title.text.toString()
         if (!TextUtils.isEmpty(title) && selectedDate != null) {
+            fab_done.setOnClickListener(null)
             val event = Event(
                 title = title,
                 date = selectedDate!!,
@@ -77,8 +86,23 @@ class AddEventActivity : AppCompatActivity() {
             AppDatabase.getAppDatabase(this)?.eventsDao()?.insertEvent(event)
             finish()
         }else {
-            //TODO insert from pls..
+            if (TextUtils.isEmpty(title))
+                onTitleFieldEmpty()
+            if (selectedDate == null)
+                onDateFieldEmpty()
         }
+    }
+
+    private fun onTitleFieldEmpty() {
+        val shakeAnimation = AnimationUtils.getShakeAnimation(3f, 800)
+        edittxt_title.startAnimation(shakeAnimation)
+        Toast.makeText(this, getString(R.string.error_title_field_empty), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onDateFieldEmpty() {
+        val shakeAnimation = AnimationUtils.getShakeAnimation(3f, 800)
+        edittxt_date.startAnimation(shakeAnimation)
+        Toast.makeText(this, getString(R.string.error_date_field_empty), Toast.LENGTH_SHORT).show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

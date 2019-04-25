@@ -24,5 +24,7 @@
 
     <!-- ERRORS -->
     <string name="error_photo_from_gallery">Failed to load photo from gallery</string>
+    <string name="error_title_field_empty">Title field cannot be empty</string>
+    <string name="error_date_field_empty">Date field cannot be empty</string>
 
 </resources>

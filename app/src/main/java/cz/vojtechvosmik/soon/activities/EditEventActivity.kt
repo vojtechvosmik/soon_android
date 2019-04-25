@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_add_event.*
 import java.lang.Exception
 import java.util.*
 import android.app.AlertDialog
+import android.widget.Toast
+import cz.vojtechvosmik.soon.utils.AnimationUtils
 
 class EditEventActivity : AppCompatActivity() {
 
@@ -113,8 +115,23 @@ class EditEventActivity : AppCompatActivity() {
             AppDatabase.getAppDatabase(this)?.eventsDao()?.updateEvent(event!!)
             finish()
         }else {
-            //TODO insert from pls..
+            if (TextUtils.isEmpty(title))
+                onTitleFieldEmpty()
+            if (selectedDate == null)
+                onDateFieldEmpty()
         }
+    }
+
+    private fun onTitleFieldEmpty() {
+        val shakeAnimation = AnimationUtils.getShakeAnimation(3f, 800)
+        edittxt_title.startAnimation(shakeAnimation)
+        Toast.makeText(this, getString(R.string.error_title_field_empty), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onDateFieldEmpty() {
+        val shakeAnimation = AnimationUtils.getShakeAnimation(3f, 800)
+        edittxt_date.startAnimation(shakeAnimation)
+        Toast.makeText(this, getString(R.string.error_date_field_empty), Toast.LENGTH_SHORT).show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

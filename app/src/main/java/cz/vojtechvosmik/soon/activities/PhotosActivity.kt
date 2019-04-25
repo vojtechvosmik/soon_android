@@ -76,6 +76,7 @@ class PhotosActivity : AppCompatActivity() {
         if (requestCode == GALLERY_PHOTOS_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             try {
                 val inputStream = contentResolver.openInputStream(data?.data!!)
+
                 val options = BitmapFactory.Options()
                 options.inSampleSize = 5
                 val photoBitmap = BitmapFactory.decodeStream(inputStream, null, options)
