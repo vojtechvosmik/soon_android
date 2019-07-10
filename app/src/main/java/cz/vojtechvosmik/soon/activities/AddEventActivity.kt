@@ -3,6 +3,7 @@ package cz.vojtechvosmik.soon.activities
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -78,6 +79,11 @@ class AddEventActivity : AppCompatActivity() {
         val title = edittxt_title.text.toString()
         if (!TextUtils.isEmpty(title) && selectedDate != null) {
             fab_done.setOnClickListener(null)
+            if (selectedPhoto == null) {
+                val photos = StorageUtils.getPhotosFromAssets(this)
+                val defaultPhoto = (photos[0] as BitmapDrawable).bitmap
+                selectedPhoto = defaultPhoto
+            }
             val event = Event(
                 title = title,
                 date = selectedDate!!,

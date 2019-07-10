@@ -7,7 +7,7 @@ import cz.vojtechvosmik.soon.R
 
 class SplashActivity : AppCompatActivity() {
 
-    private val SPLASH_LENGTH = 2000
+    private val SPLASH_LENGTH = 800
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

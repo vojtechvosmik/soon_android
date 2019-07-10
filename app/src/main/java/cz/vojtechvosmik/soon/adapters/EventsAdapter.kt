@@ -40,7 +40,7 @@ class EventViewHolder(private val context: Context, itemView: View) : RecyclerVi
 
     fun setupViews(event: Event, index: Int) {
         txtTitle.text = event.title
-        txtDaysCount.text = ((DateUtils.getDatesDifferenceInDays(event.date) + 1).toString() + " " + context.getString(R.string.days))
+        txtDaysCount.text = DateUtils.getRemainingDaysBeautiful(context, DateUtils.getDatesDifferenceInDays(event.date))
         imgPhoto.setImageBitmap(event.photo)
         container.setOnClickListener {
             val intent = Intent(context, EventsDetailsActivity::class.java)

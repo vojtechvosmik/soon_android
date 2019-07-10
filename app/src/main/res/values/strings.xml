@@ -16,11 +16,18 @@
     <!-- OTHER -->
     <string name="notification">Notification</string>
     <string name="days">Days</string>
+    <string name="day">Day</string>
+    <string name="days_ago">Days Ago</string>
+    <string name="day_ago">Day Ago</string>
     <string name="delete_event">Delete event</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
     <string name="really_delete_event">Do you really want to delete this event?</string>
     <string name="choose_photo">Choose photo</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="no_events">Add event by pressing the plus button.</string>
 
     <!-- ERRORS -->
     <string name="error_photo_from_gallery">Failed to load photo from gallery</string>

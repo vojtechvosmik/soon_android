@@ -38,7 +38,11 @@ class EventsFragment : BaseFragment() {
         recycler_events.adapter = null
         val events = AppDatabase.getAppDatabase(context!!)?.eventsDao()?.getEvents()
         val sortedEvents = events?.sortedBy { it.date }
-        if (sortedEvents != null)
+        if (!sortedEvents.isNullOrEmpty()) {
+            layout_no_events.visibility = View.GONE
             recycler_events.adapter = EventsAdapter(context!!, sortedEvents)
+        }else {
+            layout_no_events.visibility = View.VISIBLE
+        }
     }
 }

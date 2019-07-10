@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import cz.vojtechvosmik.soon.R
 import cz.vojtechvosmik.soon.activities.EditEventActivity
+import cz.vojtechvosmik.soon.interfaces.EditEventInterface
 import cz.vojtechvosmik.soon.models.Event
 import cz.vojtechvosmik.soon.room.AppDatabase
 import cz.vojtechvosmik.soon.utils.DateUtils
@@ -55,10 +56,17 @@ class EventDetailFragment : BaseFragment() {
 
     private fun fetchEvent() {
         txt_title.text = event!!.title
-        txt_days_count.text = ((DateUtils.getDatesDifferenceInDays(event!!.date) + 1).toString() + " " + context!!.getString(R.string.days))
+        txt_days_count.text = DateUtils.getRemainingDaysBeautiful(context!!, DateUtils.getDatesDifferenceInDays(event!!.date))
         img_photo.setImageBitmap(event!!.photo)
         fab_edit.setOnClickListener {
             val intent = Intent(context, EditEventActivity::class.java)
+            EditEventActivity.editEventInterface = object: EditEventInterface {
+
+                override fun onEventEdited(newEvent: Event) {
+                    event = newEvent
+                    fetchEvent()
+                }
+            }
             intent.putExtra("id", event!!.id)
             startActivity(intent)
         }

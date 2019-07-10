@@ -18,8 +18,11 @@ import kotlinx.android.synthetic.main.activity_add_event.*
 import java.lang.Exception
 import java.util.*
 import android.app.AlertDialog
+import android.graphics.drawable.BitmapDrawable
 import android.widget.Toast
+import cz.vojtechvosmik.soon.interfaces.EditEventInterface
 import cz.vojtechvosmik.soon.utils.AnimationUtils
+import cz.vojtechvosmik.soon.utils.StorageUtils
 
 class EditEventActivity : AppCompatActivity() {
 
@@ -35,6 +38,11 @@ class EditEventActivity : AppCompatActivity() {
         setupDatePicker()
         setupViews()
         getEvent()
+    }
+
+    companion object {
+
+        var editEventInterface: EditEventInterface? = null
     }
 
     private fun setupViews() {
@@ -111,8 +119,14 @@ class EditEventActivity : AppCompatActivity() {
         if (!TextUtils.isEmpty(title) && selectedDate != null) {
             event!!.title = title
             event!!.date = selectedDate!!
+            if (selectedPhoto == null) {
+                val photos = StorageUtils.getPhotosFromAssets(this)
+                val defaultPhoto = (photos[0] as BitmapDrawable).bitmap
+                selectedPhoto = defaultPhoto
+            }
             event!!.photo = selectedPhoto
             AppDatabase.getAppDatabase(this)?.eventsDao()?.updateEvent(event!!)
+            editEventInterface?.onEventEdited(event!!)
             finish()
         }else {
             if (TextUtils.isEmpty(title))

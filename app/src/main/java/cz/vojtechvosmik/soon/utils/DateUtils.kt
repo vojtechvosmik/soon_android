@@ -1,13 +1,25 @@
 package cz.vojtechvosmik.soon.utils
 
-import android.util.Log
+import android.content.Context
+import cz.vojtechvosmik.soon.R
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 object DateUtils {
 
-    fun getDateFromString(dateString: String, dateFormat: String) : Date? {
+    fun getRemainingDaysBeautiful(context: Context, days: Int): String {
+        return when {
+            days == 1 -> context.getString(R.string.tomorrow)
+            days > 1 -> days.toString() + " " + context.getString(R.string.days)
+            days == 0 -> context.getString(R.string.today)
+            days == -1 -> context.getString(R.string.yesterday)
+            days < -1 -> (days * -1).toString() + " " + context.getString(R.string.days_ago)
+            else -> days.toString()
+        }
+    }
+
+    fun getDateFromString(dateString: String, dateFormat: String): Date? {
         val format = SimpleDateFormat(dateFormat, Locale.getDefault())
         return try {
             format.parse(dateString)
@@ -23,7 +35,7 @@ object DateUtils {
         val minutes = seconds / 60
         val hours = minutes / 60
         val days = hours / 24
-        return days.toInt()
+        return days.toInt() + 1
     }
 
     fun changeDateFormat(oldDate: Date, newFormatPattern: String): String? {
